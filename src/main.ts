@@ -13,8 +13,13 @@ async function run(): Promise<void> {
 async function mergeBranch() {
   const owner = github.context.repo.owner
   const repo = github.context.repo.repo
+  const faktorySecretKey: string = core.getInput('FAKTORY_SECRET_KEY')
 
-  await fetch(`https://api.touchlab.dev/gh/mergeBranch/${owner}/${repo}`)
+  await fetch(`https://api.touchlab.dev/gh/mergeBranch/${owner}/${repo}`, {
+    headers: {
+      'FAKTORY_SECRET_KEY': faktorySecretKey
+    }
+  })
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => {
