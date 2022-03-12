@@ -1,0 +1,7 @@
+name: 'Touchlab'
+description: 'Merges dev to main'
+author: 'Kevin Galligan'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
