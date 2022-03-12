@@ -65,9 +65,15 @@ function mergeBranch() {
         const owner = github.context.repo.owner;
         const repo = github.context.repo.repo;
         const faktorySecretKey = core.getInput('FAKTORY_SECRET_KEY');
-        yield (0, node_fetch_1.default)(`https://api.touchlab.dev/gh/mergeBranch/${owner}/${repo}`, {
-            headers: {
-                'FAKTORY_SECRET_KEY': faktorySecretKey
+        yield (0, node_fetch_1.default)(`https://api.touchlab.dev/gh/mergeBranch/${owner}/${repo}?faktorySecretKey=${faktorySecretKey}`)
+            .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(text);
+                });
+            }
+            else {
+                return response;
             }
         })
             .then(response => response.json())
