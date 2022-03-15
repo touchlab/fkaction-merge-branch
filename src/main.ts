@@ -17,6 +17,9 @@ async function mergeBranch() {
   const buildBranch: string = core.getInput('build_branch')
   const params = `faktorySecretKey=${faktorySecretKey}&buildBranch=${encodeURIComponent(buildBranch)}`
 
+  core.warning(`buildBranch ${buildBranch}`)
+  core.warning(`params ${params}`)
+
   await fetch(
     `https://api.touchlab.dev/gh/mergeBranch/${owner}/${repo}?${params}`
   )
