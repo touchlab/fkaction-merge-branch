@@ -5,6 +5,9 @@ inputs:
   FAKTORY_SECRET_KEY:
     required: true
     description: 'Faktory secret key'
+  build_branch:
+    required: true
+    description: 'Build branch'
 runs:
   using: 'node12'
   main: 'dist/index.js'
